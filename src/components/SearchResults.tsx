@@ -85,7 +85,7 @@ const SearchResults: React.FC = () => {
     }, [precisionRecall, handleSearch, keyword]);
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-8">
+        <div className="min-h-screen  py-8">
             <div className="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg space-y-8">
                 <div className="flex flex-col space-y-2">
                     <h1 className="text-2xl font-bold text-gray-800">Patent Search</h1>
