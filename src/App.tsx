@@ -1,9 +1,9 @@
-import SearchInterface from "./components/SearchResults";
+import SearchResults from "./components/SearchResults";
 
 function App() {
     return (
         <main className="container mx-auto py-8">
-            <SearchInterface />
+            <SearchResults />
         </main>
     )
 }
