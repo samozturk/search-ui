@@ -1,50 +1,155 @@
-# React + TypeScript + Vite
+# Patent Search UI Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based patent search interface with real-time results, advanced filtering, and data visualization capabilities.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔍 Real-time patent search with keyword input
+- ⚖️ Adjustable precision-recall balance
+- 📊 Multiple view layouts (List/Grid)
+- 📈 Result relevance visualization
+- 📱 Responsive design
+- 📋 Copy and share functionality
+- 📥 CSV export capabilities
+- 📜 Search history management
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 📋 Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+Before you begin, ensure you have the following installed:
+- Node.js (version 16 or higher)
+- npm or yarn
+- A modern web browser
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🛠️ Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
 ```
+
+3. Install required UI components:
+```bash
+npx shadcn-ui@latest init
+npx shadcn-ui@latest add card input button slider dropdown-menu sheet badge tabs alert scroll-area
+```
+
+## 💻 Usage
+
+1. Import the component:
+```tsx
+import SearchResults from './components/SearchResults';
+```
+
+2. Use it in your React application:
+```tsx
+function App() {
+  return (
+    <div>
+      <SearchResults />
+    </div>
+  );
+}
+```
+
+3. Configure the API endpoint:
+   - Set up your API endpoint in your environment configuration
+   - Default endpoint is `/api/search`
+
+## ⚙️ Configuration
+
+Create a `.env` file in your project root:
+
+```env
+NEXT_PUBLIC_API_URL=your_api_endpoint
+```
+
+## 🔧 API Integration
+
+The component expects the following API response structure:
+
+```typescript
+interface APIResponse {
+  results: {
+    abstract: string[];
+    relevance_score: number[];
+    degree_between: number[];
+  }
+}
+```
+
+Example API request:
+```typescript
+{
+  keywords: ["your search terms"],
+  precision_recall_balance: 0.5
+}
+```
+
+## 🎨 Customization
+
+### Styling
+
+The component uses Tailwind CSS. You can customize the appearance by:
+
+1. Modifying the Tailwind configuration:
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      // Your custom styles
+    }
+  }
+}
+```
+
+2. Overriding component classes:
+```tsx
+<SearchResults className="custom-class" />
+```
+
+### Component Modifications
+
+Key areas for customization:
+
+- `getRelevanceColor`: Modify the color scheme for relevance scores
+- `LoadingSkeleton`: Customize the loading state appearance
+- View layouts: Adjust the grid/list view layouts
+
+## 📚 Component Structure
+
+```
+SearchResults/
+├── SearchResults.tsx      # Main component
+├── types.ts              # TypeScript interfaces
+└── utils/
+```
+
+## 🔍 Props Reference
+
+The component is currently self-contained but can be modified to accept props such as:
+
+```typescript
+interface SearchResultsProps {
+  apiEndpoint?: string;
+  maxHistoryItems?: number;
+  defaultPrecisionRecall?: number;
+  onSearchComplete?: (results: SearchResults) => void;
+}
+```
+
+## 🙏 Acknowledgments
+
+- [shadcn/ui](https://ui.shadcn.com/) for UI components
+- [Lucide](https://lucide.dev/) for icons
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+
