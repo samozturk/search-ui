@@ -14,6 +14,9 @@ export default defineConfig({
     host: true, // Needed for docker/container environments
     strictPort: true,
     port: 5173, // Your desired port
+    hmr: {
+      overlay: false // Disables the error overlay
+    },
     proxy: {
       '/api': {
         target: 'http://localhost:8000', // Your API server
