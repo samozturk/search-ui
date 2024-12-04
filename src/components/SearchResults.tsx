@@ -89,7 +89,7 @@ const SearchResults: React.FC = () => {
         setError(null);
 
         try {
-            const response = await fetch('/api/search', { // Changed from http://localhost:8000/search
+            const response = await fetch('/api/search', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
