@@ -19,9 +19,9 @@ export default defineConfig({
     },
     proxy: {
       '/api': {
-        target: 'http://localhost:8000', // Your API server
+        target: 'http://samozturk.online:8000',  // Update this to your actual API endpoint
         changeOrigin: true,
-        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '')
       },
       '/ws': {
         target: 'ws://localhost:8000', // Your WebSocket server
